@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TodoList project</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="flexContainer">
+        <div id="todo-list-example">
+            
+            <div id= "headerTitle"><h1>G^3 TodoList</h1></div>
+                    
+            <form v-on:submit.prevent="addNewTodo">
+            <label for="new-todo">Add a todo</label>
+                <input
+                        v-model="newTodoText"
+                        id="new-todo"
+                        placeholder="E.g. Feed the cat"
+                >
+                <input
+                        v-model="newTodoDate"
+                        id="new-todo-date"
+                        placeholder="2021-05-12"
+                > 
+            <label for="priorityList">Priority:</label>
+            <select name="priorityList" id="priorityList" v-model="newPrio">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>    
+                
+            <button>Add</button>
+            
+        </form>
+            <ul>
+                <li id="vueList"
+                        is="todo-item"
+                        v-for="(todo, index) in todos"
+                        v-bind:style="{color: todo.prioColor}"
+                        
+                        v-bind:key="todo.id"
+                        v-bind:todos="todo.title + ' ' + todo.date"
+                        v-bind:prio="todo.prio"
+                        v-on:remove="todos.splice(index, 1)"
+                        v-on:prio="todo.prio++; todo.prioColor = 'red'"
+                ></li>
+            </ul>
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            /*
+            1. Visa alla i listan
+            2. Lägga till i listan
+            3. Ta bort i listan
+            */
+            Vue.component('todo-item', {
+                template: `
+        <li>
+          {{ todos }}
+          {{ prio }}
+          <button v-on:click="$emit('prio')">Priority</button>
+          <button v-on:click="$emit('remove')">Remove</button>
+        </li>
+      `,
+                props: ['todos', 'prio']
+            })
+    
+            new Vue({
+                el: '#todo-list-example',
+                data: {
+                    newTodoText: '',
+                    newTodoDate: '',
+                    newPrio:'1',
+                    removeColor:"blue",
+                    todos: [
+                        {
+                            id: 1,
+                            title: 'Handla',
+                            date: '2021-02-25',
+                            prio: 0,
+                            prioColor: 'black'
+                        },
+                        {
+                            id: 2,
+                            title: 'Städa',
+                            date: '2021-02-25',
+                            prio: 0,
+                            prioColor: 'black'
+                        },
+                        {
+                            id: 3,
+                            title: 'Diska',
+                            date: '2021-02-25',
+                            prio: 0,
+                            prioColor: 'black'
+                        }
+                    ],
+                    nextTodoId: 4
+                },
+                methods: {
+                    addNewTodo: function () {
+                        this.todos.push({
+                            id: this.nextTodoId++,
+                            title: this.newTodoText,
+                            date: this.newTodoDate,
+                            prio: parseInt(this.newPrio),
+                        })
+                        this.newTodoText = '',
+                        this.newTodoDate = ''
+                    }
+                }
+            })
+        </script>
+        <script src="js/userBoX.js"></script>
+    </div>
+    
+</body>
+</html>

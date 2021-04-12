@@ -1,0 +1,23 @@
+.flexContainer {
+    display: flex;
+}
+.vueList li button {
+    margin: 4px;
+    display: block;
+}
+.removeButton Button{
+    background-color: darkgreen;
+}
+
+p {
+    font-size: medium;
+    padding: 4px;
+}
+h1 {
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+@media screen and (min-width: 1025px){
+    
+}
