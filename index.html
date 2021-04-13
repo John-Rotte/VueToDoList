@@ -13,6 +13,7 @@
             
             <div id= "headerTitle"><h1>G^3 TodoList</h1></div>
             
+
                     
             <form v-on:submit.prevent="addNewTodo">
             <label for="new-todo">Add a todo</label>
@@ -20,11 +21,6 @@
                         v-model="newTodoText"
                         id="new-todo"
                         placeholder="E.g. Feed the cat"
-                >
-                <input
-                        v-model="newTodoDate"
-                        id="new-todo-date"
-                        placeholder="2021-05-12"
                 > 
             <label for="priorityList">Priority:</label>
             <select name="priorityList" id="priorityList" v-model="newPrio">
@@ -97,7 +93,6 @@
                 data: {
                     newTodoText: '',
                     newPrio:'low',
-                    removeColor:"blue",
                     todos: [
                         {
                             id: 1,
