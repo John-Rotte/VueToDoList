@@ -28,9 +28,9 @@
                 > 
             <label for="priorityList">Priority:</label>
             <select name="priorityList" id="priorityList" v-model="newPrio">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
             </select>    
                 
             <button>Add</button>
@@ -39,14 +39,36 @@
             <ul>
                 <li id="vueList"
                         is="todo-item"
-                        v-for="(todo, index) in todos"
-                   
-                        v-bind:style="{color: todo.prioColor}"
+                        v-for="(todo, title) in todos"
+                        v-if="todo.prio == 'low'"
+                        v-bind:style="{color: todo.prioColor = 'green'}"
                         v-bind:key="todo.id"
-                        v-bind:todos="todo.title + ' ' + todo.date"
+                        v-bind:todos="todo.title + ' Priority: ' + todo.prio"
                         v-bind:prio="todo.prio"
                         v-on:remove="todos.splice(index, 1)"
-                        v-on:prio="todo.prio++; todo.prioColor = 'red'"
+                        v-on:prio="todo.prio = 'medium'"  
+                ></li>
+                <li id="vueList"
+                        is="todo-item"
+                        v-for="(todo, title) in todos"
+                        v-if="todo.prio == 'medium'"
+                        v-bind:style="{color: todo.prioColor = 'orange'}"
+                        v-bind:key="todo.id"
+                        v-bind:todos="todo.title + ' Priority: ' + todo.prio"
+                        v-bind:prio="todo.prio"
+                        v-on:remove="todos.splice(index, 1)"
+                        v-on:prio="todo.prio = 'high'"   
+                ></li>
+                <li id="vueList"
+                        is="todo-item"
+                        v-for="(todo, title) in todos"
+                        v-if="todo.prio == 'high'"
+                        v-bind:style="{color: todo.prioColor = 'red'}"
+                        v-bind:key="todo.id"
+                        v-bind:todos="todo.title + ' Priority: ' + todo.prio"
+                        v-bind:prio="todo.prio"
+                        v-on:remove="todos.splice(index, 1)"
+                        v-on:prio="todo.prio = 'low'"
                         
                 ></li>
             </ul>
@@ -63,7 +85,6 @@
                 template: `
         <li>
           {{ todos }}
-          {{ prio }}
           <button v-on:click="$emit('prio')">Priority</button>
           <button v-on:click="$emit('remove')">Remove</button>
         </li>
@@ -75,29 +96,25 @@
                 el: '#todo-list-example',
                 data: {
                     newTodoText: '',
-                    newTodoDate: '',
-                    newPrio:'1',
+                    newPrio:'low',
                     removeColor:"blue",
                     todos: [
                         {
                             id: 1,
                             title: 'Handla',
-                            date: '2021-02-25',
-                            prio: 0,
+                            prio: 'low',
                             prioColor: 'black'
                         },
                         {
                             id: 2,
                             title: 'Städa',
-                            date: '2021-02-25',
-                            prio: 0,
+                            prio: 'low',
                             prioColor: 'black'
                         },
                         {
                             id: 3,
                             title: 'Diska',
-                            date: '2021-02-25',
-                            prio: 0,
+                            prio: 'low',
                             prioColor: 'black'
                         }
                     ],
@@ -108,11 +125,10 @@
                         this.todos.push({
                             id: this.nextTodoId++,
                             title: this.newTodoText,
-                            date: this.newTodoDate,
-                            prio: parseInt(this.newPrio),
+                            prio: this.newPrio,
                         })
                         this.newTodoText = '',
-                        this.newTodoDate = ''
+                        this.newPrio = 'low'
                     }
                 }
             })
