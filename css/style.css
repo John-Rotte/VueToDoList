@@ -20,6 +20,9 @@ h1 {
     font-size: xx-large;
     font-weight: bold;
 }
+form {
+    padding: 0.3vw;
+}
 
 @media screen and (min-width: 1025px){
     

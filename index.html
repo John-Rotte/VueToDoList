@@ -11,27 +11,38 @@
     <div id="flexContainer">
         <div id="todo-list-example">
             
-            <div id= "headerTitle"><h1>G^3 TodoList</h1></div>
-            
+            <div id="logIn" v-if = "userAdded == false">
+                <form v-on:submit="addNewUser">
+                    <label for="userInput">Your name:</label>
+                        <input 
+                            v-model="userName"
+                            id="userInput"
+                            placeholder="Enter Name Here"
+                        >
+                    <button>Submit</button>    
+                </form>
 
-                    
-            <form v-on:submit.prevent="addNewTodo">
-            <label for="new-todo">Add a todo</label>
-                <input
-                        v-model="newTodoText"
-                        id="new-todo"
-                        placeholder="E.g. Feed the cat"
-                > 
-            <label for="priorityList">Priority:</label>
-            <select name="priorityList" id="priorityList" v-model="newPrio">
-                <option value="low">Low</option>
-                <option value="medium">Medium</option>
-                <option value="high">High</option>
-            </select>    
-                
-            <button>Add</button>
+            </div>
+
+                <div id= "headerTitle" v-if="userAdded == true" ><h1>{{userName + 's '}}TodoList </h1></div>
+                              
+                <form v-on:submit.prevent="addNewTodo">
+                    <label for="new-todo">Add a todo</label>
+                    <input
+                            v-model="newTodoText"
+                            id="new-todo"
+                            placeholder="E.g. Feed the cat"
+                    > 
+                    <label for="priorityList">Priority:</label>
+                    <select name="priorityList" id="priorityList" v-model="newPrio">
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>    
+                        
+                    <button>Add</button>
             
-        </form>
+                </form>
             <ul>
                 <li id="vueList"
                         is="todo-item"
@@ -68,6 +79,11 @@
                         
                 ></li>
             </ul>
+        
+        <div id="removeAllButton" v-if="todos.length >= 0">    
+            <button v-on:click="todos.splice(0)">Throw List</button>
+        </div>
+
         </div>
         
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -93,6 +109,8 @@
                 data: {
                     newTodoText: '',
                     newPrio:'low',
+                    userAdded: false,
+                    userName: '',
                     todos: [
                         {
                             id: 1,
@@ -124,11 +142,15 @@
                         })
                         this.newTodoText = '',
                         this.newPrio = 'low'
+                    },
+                    addNewUser: function () {
+                       this.userAdded = true                       
                     }
                 }
             })
         </script>
         <script src="js/userBoX.js"></script>
+        
     </div>
     
 </body>
