@@ -12,6 +12,7 @@
         <div id="todo-list-example">
             
             <div id= "headerTitle"><h1>G^3 TodoList</h1></div>
+            
                     
             <form v-on:submit.prevent="addNewTodo">
             <label for="new-todo">Add a todo</label>
@@ -39,13 +40,14 @@
                 <li id="vueList"
                         is="todo-item"
                         v-for="(todo, index) in todos"
+                   
                         v-bind:style="{color: todo.prioColor}"
-                        
                         v-bind:key="todo.id"
                         v-bind:todos="todo.title + ' ' + todo.date"
                         v-bind:prio="todo.prio"
                         v-on:remove="todos.splice(index, 1)"
                         v-on:prio="todo.prio++; todo.prioColor = 'red'"
+                        
                 ></li>
             </ul>
         </div>

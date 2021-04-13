@@ -1,5 +1,6 @@
 .flexContainer {
     display: flex;
+    justify-content: center;
 }
 .vueList li button {
     margin: 4px;
@@ -8,7 +9,9 @@
 .removeButton Button{
     background-color: darkgreen;
 }
-
+ li {
+     padding: 0.1vw;
+ }
 p {
     font-size: medium;
     padding: 4px;
