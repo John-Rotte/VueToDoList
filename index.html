@@ -54,7 +54,7 @@
           v-if="todo.prio == 'high'"
           v-bind:style="{color: todo.prioColor = 'red'}"
           v-bind:key="todo.id"
-          v-bind:todos="todo.title + ' Priority: ' + todo.prio"
+          v-bind:todos="todo.title"
           v-bind:prio="todo.prio"
           v-on:remove="todos.splice(index, 1)"
           v-on:prio="todo.prio = 'low'"
@@ -67,7 +67,7 @@
           v-if="todo.prio == 'medium'"
           v-bind:style="{color: todo.prioColor = 'peru'}"
           v-bind:key="todo.id"
-          v-bind:todos="todo.title + ' Priority: ' + todo.prio"
+          v-bind:todos="todo.title"
           v-bind:prio="todo.prio"
           v-on:remove="todos.splice(index, 1)"
           v-on:prio="todo.prio = 'high'"
@@ -79,7 +79,7 @@
           v-if="todo.prio == 'low'"
           v-bind:style="{color: todo.prioColor = 'green'}"
           v-bind:key="todo.id"
-          v-bind:todos="todo.title + ' Priority: ' + todo.prio"
+          v-bind:todos="todo.title"
           v-bind:prio="todo.prio"
           v-on:remove="todos.splice(index, 1)"
           v-on:prio="todo.prio = 'medium'"
@@ -121,33 +121,26 @@
           todos: [
             {
               id: 1,
-              title: "Handla",
-              prio: "low",
-              prioColor: "black",
-            },
-            {
-              id: 2,
-              title: "Städa",
-              prio: "low",
-              prioColor: "black",
-            },
-            {
-              id: 3,
-              title: "Diska",
-              prio: "low",
-              prioColor: "black",
+              title: "Add items to list",
+              prio: "high",
+              
             },
           ],
-          nextTodoId: 4,
+          nextTodoId: 2,
         },
         methods: {
           addNewTodo: function () {
+              if(this.newTodoText != ''){
             this.todos.push({
               id: this.nextTodoId++,
               title: this.newTodoText,
               prio: this.newPrio,
             });
             (this.newTodoText = ""), (this.newPrio = "low");
+        }   
+        else {
+                return;
+            }
           },
           addNewUser: function () {
               if(this.userName == ''){
