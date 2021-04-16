@@ -9,6 +9,9 @@
 .removeButton Button{
     background-color: darkgreen;
 }
+#addButton{
+    background-color: darkgreen;
+}
  li {
      padding: 0.1vw;
  }

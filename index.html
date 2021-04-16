@@ -40,7 +40,7 @@
                         <option value="high">High</option>
                     </select>    
                         
-                    <button>Add</button>
+                    <button id="addButton">Add</button>
             
                 </form>
             <ul>
@@ -95,8 +95,8 @@
             */
             Vue.component('todo-item', {
                 template: `
-        <li>
-          {{ todos }}
+        <li id="componentInList">
+          <div id="todoAndPrioInList"> {{ todos }}</div>
           <button v-on:click="$emit('prio')">Priority</button>
           <button v-on:click="$emit('remove')">Remove</button>
         </li>
