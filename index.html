@@ -45,19 +45,20 @@
                 </form>
             <ul>
                 <li id="vueList"
-                        is="todo-item"
-                        v-for="(todo, title) in todos"
-                        v-if="todo.prio == 'low'"
-                        v-bind:style="{color: todo.prioColor = 'green'}"
-                        v-bind:key="todo.id"
-                        v-bind:todos="todo.title + ' Priority: ' + todo.prio"
-                        v-bind:prio="todo.prio"
-                        v-on:remove="todos.splice(index, 1)"
-                        v-on:prio="todo.prio = 'medium'"  
+                is="todo-item"
+                v-for="(todo, index) in todos"
+                v-if="todo.prio == 'high'"
+                v-bind:style="{color: todo.prioColor = 'red'}"
+                v-bind:key="todo.id"
+                v-bind:todos="todo.title + ' Priority: ' + todo.prio"
+                v-bind:prio="todo.prio"
+                v-on:remove="todos.splice(index, 1)"
+                v-on:prio="todo.prio = 'low'"
                 ></li>
+
                 <li id="vueList"
                         is="todo-item"
-                        v-for="(todo, title) in todos"
+                        v-for="(todo, index) in todos"
                         v-if="todo.prio == 'medium'"
                         v-bind:style="{color: todo.prioColor = 'orange'}"
                         v-bind:key="todo.id"
@@ -68,15 +69,14 @@
                 ></li>
                 <li id="vueList"
                         is="todo-item"
-                        v-for="(todo, title) in todos"
-                        v-if="todo.prio == 'high'"
-                        v-bind:style="{color: todo.prioColor = 'red'}"
+                        v-for="(todo, index) in todos"
+                        v-if="todo.prio == 'low'"
+                        v-bind:style="{color: todo.prioColor = 'green'}"
                         v-bind:key="todo.id"
                         v-bind:todos="todo.title + ' Priority: ' + todo.prio"
                         v-bind:prio="todo.prio"
                         v-on:remove="todos.splice(index, 1)"
-                        v-on:prio="todo.prio = 'low'"
-                        
+                        v-on:prio="todo.prio = 'medium'"  
                 ></li>
             </ul>
         
