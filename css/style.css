@@ -1,7 +1,12 @@
 #headerContainer {
     display: flex;
-    justify-content: center;
+    justify-content: left;
+    margin-left: 40px;
 }
+ul button {
+    margin-right: 0.5vW;
+}
+
 #choiceLow {
     background-color: green;
 }
@@ -11,15 +16,48 @@
 #choiceHigh {
     background-color: red;
 }
-.vueList li button {
-    margin: 4px;
-    display: block;
+#addPriority {
+    display: flex;  
+    justify-content: left;  
+    flex-direction: row;
+    margin-top: 2vw;  
+    margin-left: 40px; 
+}
+
+#vueList {
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+    padding-bottom: 0.5vw;
+}
+#componentInList {
+    display: flex;       
+}
+#buttonsInList {
+    display: flex;
+    flex-direction: row;
+}
+#buttonsInList button {
+    width: 8vw;
+    height: 1.75vw;
+    margin-top: 0.25vw; 
+}
+ul {
+    margin: 0;
+}
+ul button {
+    margin-right: 0.5vW;
 }
 .removeButton Button{
     background-color: peru;
 }
 #addButton{
     background-color: limegreen;
+    width: 16.6vw;
+    margin-bottom: 1.3vW;
+    margin-top: 0.2vw;
+    margin-left: 40px;
+
 }
  li {
      padding: 0.1vw;
@@ -31,42 +69,97 @@ p {
 h1 {
     font-size: xx-large;
     font-weight: bold;
+    margin-left: 40px;
 }
 form {
     padding: 0.3vw;
 }
+#removeAllButton button {
+    width: 16.6vw;
+    margin-top: 1vW;
+    background-color: firebrick;
+}
 
-@media screen and (min-width: 1025px){
+@media screen and (max-width: 1025px){
+    h1 {
+        margin-left: 0;
+    }
+    ul {
+        padding-left: 0;
+        padding-top:8vw ;
+    }
+    button {
+        font-weight: bolder;
+    }
     #headerContainer {
         display: flex;
-        justify-content: left;
+        justify-content: center;
+        margin-left: 0;
     }
-    ul button {
-        margin-right: 0.5vW;
+   
+    #submitButton button {
+        padding: 1vw;
     }
-    #vueList {
+    #addPriority {
+        display: flex;  
+        justify-content: center;  
+        flex-direction: row;
+        margin-top: 4vw;   
+        margin-left: 0;
+        font-weight: bolder;
+    }
+
+    #addButtonContainer {
         display: flex;
-        justify-content: left;
-        flex-direction: column;
-        padding-bottom: 0.5vw;
+        justify-content: center;
     }
-    #componentInList {
-        display: flex;       
+
+    #todoAndPrioInList {
+        display: flex;  
+        justify-content: center;  
+        font-size: large;     
+    }
+    
+    #priorityList {
+        display: flex;
+        justify-content: center;
     }
     #buttonsInList {
         display: flex;
+        justify-content: center;
         flex-direction: row;
     }
     #buttonsInList button {
         width: 8vw;
+        height: 3vw;
+        min-width: 75px;
+        min-height: 30px;
         margin-top: 0.25vw;
-        
     }
-    
-    #removeAllButton button {
-        width: 14vw;
+    #removeAllButton {
+        display: flex;
+        justify-content: center;
+    }
+    #addButton{
+        background-color: limegreen;
+        width: 16.6vw;
         margin-top: 1vW;
+        min-width: 150px;
+        min-height: 30px;
+        margin-top: 2vW;
+        justify-content: center;
+        margin-left: 0;
+    }
+    #removeAllButton button {
+       
+        width: 16.6vw;
+        min-width: 150px;
+        min-height: 30px;
+        margin-top: 2vW;
+        
         background-color: firebrick;
     }
+    
+
     
 }

@@ -11,14 +11,14 @@
     <div id="todo-list-example">
       <div id="headerContainer">
         <div id="logIn" v-if="userAdded == false">
-          <form v-on:submit="addNewUser">
+          <form  v-on:submit="addNewUser">
             <label for="userInput">Your name:</label>
             <input
               v-model="userName"
               id="userInput"
               placeholder="Enter Name Here"
             />
-            <button>Submit</button>
+            <button id="submitButton">Submit</button>
           </form>
         </div>
 
@@ -26,21 +26,25 @@
           <h1>{{userName + 's '}}TodoList</h1>
         </div>
       </div>
-      <form v-on:submit.prevent="addNewTodo">
-        <label for="new-todo">Add a todo</label>
+      <form id="submitUserForm" v-on:submit.prevent="addNewTodo">
+        <div id="addPriority">
+        <label for="new-todo">Todo:</label>
         <input
           v-model="newTodoText"
           id="new-todo"
           placeholder="E.g. Feed the cat"
         />
-        <label for="priorityList">Priority:</label>
-        <select name="priorityList" id="priorityList" v-model="newPrio">
-          <option id="choiceLow" value="low">Low</option>
-          <option id="choiceMedium" value="medium">Medium</option>
-          <option id="choiceHigh" value="high">High</option>
-        </select>
-
-        <button id="addButton">Add</button>
+        
+            <label for="priorityList">Prio:</label>
+            <select name="priorityList" id="priorityList" v-model="newPrio">
+            <option id="choiceLow" value="low">Low</option>
+            <option id="choiceMedium" value="medium">Medium</option>
+            <option id="choiceHigh" value="high">High</option>
+            </select>
+        </div>
+        <div id="addButtonContainer">
+            <button id="addButton">Add</button>
+        </div>
       </form>
       <ul>
         <li
