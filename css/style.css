@@ -1,16 +1,25 @@
-.flexContainer {
+#headerContainer {
     display: flex;
     justify-content: center;
+}
+#choiceLow {
+    background-color: green;
+}
+#choiceMedium {
+    background-color: peru;
+}
+#choiceHigh {
+    background-color: red;
 }
 .vueList li button {
     margin: 4px;
     display: block;
 }
 .removeButton Button{
-    background-color: darkgreen;
+    background-color: peru;
 }
 #addButton{
-    background-color: darkgreen;
+    background-color: limegreen;
 }
  li {
      padding: 0.1vw;
@@ -28,5 +37,36 @@ form {
 }
 
 @media screen and (min-width: 1025px){
+    #headerContainer {
+        display: flex;
+        justify-content: left;
+    }
+    ul button {
+        margin-right: 0.5vW;
+    }
+    #vueList {
+        display: flex;
+        justify-content: left;
+        flex-direction: column;
+        padding-bottom: 0.5vw;
+    }
+    #componentInList {
+        display: flex;       
+    }
+    #buttonsInList {
+        display: flex;
+        flex-direction: row;
+    }
+    #buttonsInList button {
+        width: 8vw;
+        margin-top: 0.25vw;
+        
+    }
+    
+    #removeAllButton button {
+        width: 14vw;
+        margin-top: 1vW;
+        background-color: firebrick;
+    }
     
 }

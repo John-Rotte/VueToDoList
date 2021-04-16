@@ -1,157 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TodoList project</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <div id="flexContainer">
-        <div id="todo-list-example">
-            
-            <div id="logIn" v-if = "userAdded == false">
-                <form v-on:submit="addNewUser">
-                    <label for="userInput">Your name:</label>
-                        <input 
-                            v-model="userName"
-                            id="userInput"
-                            placeholder="Enter Name Here"
-                        >
-                    <button>Submit</button>    
-                </form>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div id="todo-list-example">
+      <div id="headerContainer">
+        <div id="logIn" v-if="userAdded == false">
+          <form v-on:submit="addNewUser">
+            <label for="userInput">Your name:</label>
+            <input
+              v-model="userName"
+              id="userInput"
+              placeholder="Enter Name Here"
+            />
+            <button>Submit</button>
+          </form>
+        </div>
 
-            </div>
+        <div id="headerTitle" v-if="userAdded == true">
+          <h1>{{userName + 's '}}TodoList</h1>
+        </div>
+      </div>
+      <form v-on:submit.prevent="addNewTodo">
+        <label for="new-todo">Add a todo</label>
+        <input
+          v-model="newTodoText"
+          id="new-todo"
+          placeholder="E.g. Feed the cat"
+        />
+        <label for="priorityList">Priority:</label>
+        <select name="priorityList" id="priorityList" v-model="newPrio">
+          <option id="choiceLow" value="low">Low</option>
+          <option id="choiceMedium" value="medium">Medium</option>
+          <option id="choiceHigh" value="high">High</option>
+        </select>
 
-                <div id= "headerTitle" v-if="userAdded == true" ><h1>{{userName + 's '}}TodoList </h1></div>
-                              
-                <form v-on:submit.prevent="addNewTodo">
-                    <label for="new-todo">Add a todo</label>
-                    <input
-                            v-model="newTodoText"
-                            id="new-todo"
-                            placeholder="E.g. Feed the cat"
-                    > 
-                    <label for="priorityList">Priority:</label>
-                    <select name="priorityList" id="priorityList" v-model="newPrio">
-                        <option value="low">Low</option>
-                        <option value="medium">Medium</option>
-                        <option value="high">High</option>
-                    </select>    
-                        
-                    <button id="addButton">Add</button>
-            
-                </form>
-            <ul>
-                <li id="vueList"
-                is="todo-item"
-                v-for="(todo, index) in todos"
-                v-if="todo.prio == 'high'"
-                v-bind:style="{color: todo.prioColor = 'red'}"
-                v-bind:key="todo.id"
-                v-bind:todos="todo.title + ' Priority: ' + todo.prio"
-                v-bind:prio="todo.prio"
-                v-on:remove="todos.splice(index, 1)"
-                v-on:prio="todo.prio = 'low'"
-                ></li>
+        <button id="addButton">Add</button>
+      </form>
+      <ul>
+        <li
+          id="vueList"
+          is="todo-item"
+          v-for="(todo, index) in todos"
+          v-if="todo.prio == 'high'"
+          v-bind:style="{color: todo.prioColor = 'red'}"
+          v-bind:key="todo.id"
+          v-bind:todos="todo.title + ' Priority: ' + todo.prio"
+          v-bind:prio="todo.prio"
+          v-on:remove="todos.splice(index, 1)"
+          v-on:prio="todo.prio = 'low'"
+        ></li>
 
-                <li id="vueList"
-                        is="todo-item"
-                        v-for="(todo, index) in todos"
-                        v-if="todo.prio == 'medium'"
-                        v-bind:style="{color: todo.prioColor = 'orange'}"
-                        v-bind:key="todo.id"
-                        v-bind:todos="todo.title + ' Priority: ' + todo.prio"
-                        v-bind:prio="todo.prio"
-                        v-on:remove="todos.splice(index, 1)"
-                        v-on:prio="todo.prio = 'high'"   
-                ></li>
-                <li id="vueList"
-                        is="todo-item"
-                        v-for="(todo, index) in todos"
-                        v-if="todo.prio == 'low'"
-                        v-bind:style="{color: todo.prioColor = 'green'}"
-                        v-bind:key="todo.id"
-                        v-bind:todos="todo.title + ' Priority: ' + todo.prio"
-                        v-bind:prio="todo.prio"
-                        v-on:remove="todos.splice(index, 1)"
-                        v-on:prio="todo.prio = 'medium'"  
-                ></li>
-            </ul>
+        <li
+          id="vueList"
+          is="todo-item"
+          v-for="(todo, index) in todos"
+          v-if="todo.prio == 'medium'"
+          v-bind:style="{color: todo.prioColor = 'peru'}"
+          v-bind:key="todo.id"
+          v-bind:todos="todo.title + ' Priority: ' + todo.prio"
+          v-bind:prio="todo.prio"
+          v-on:remove="todos.splice(index, 1)"
+          v-on:prio="todo.prio = 'high'"
+        ></li>
+        <li
+          id="vueList"
+          is="todo-item"
+          v-for="(todo, index) in todos"
+          v-if="todo.prio == 'low'"
+          v-bind:style="{color: todo.prioColor = 'green'}"
+          v-bind:key="todo.id"
+          v-bind:todos="todo.title + ' Priority: ' + todo.prio"
+          v-bind:prio="todo.prio"
+          v-on:remove="todos.splice(index, 1)"
+          v-on:prio="todo.prio = 'medium'"
+        ></li>
         
-        <div id="removeAllButton" v-if="todos.length >= 0">    
+        <div id="removeAllButton" v-if="todos.length >= 0">
             <button v-on:click="todos.splice(0)">Throw List</button>
-        </div>
+          </div>
+      </ul>
 
-        </div>
-        
-        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-        <script>
-            /*
+      
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      /*
             1. Visa alla i listan
             2. Lägga till i listan
             3. Ta bort i listan
             */
-            Vue.component('todo-item', {
-                template: `
-        <li id="componentInList">
+      Vue.component("todo-item", {
+        template: `
+        <li>
           <div id="todoAndPrioInList"> {{ todos }}</div>
-          <button v-on:click="$emit('prio')">Priority</button>
-          <button v-on:click="$emit('remove')">Remove</button>
+          <div id= buttonsInList><button v-bind:style="{backgroundColor:'limegreen'}" v-on:click="$emit('prio')">Priority++</button>
+          <button v-bind:style="{backgroundColor:'orange'}" v-on:click="$emit('remove')">Remove</button></div>
         </li>
       `,
-                props: ['todos', 'prio']
-            })
-    
-            new Vue({
-                el: '#todo-list-example',
-                data: {
-                    newTodoText: '',
-                    newPrio:'low',
-                    userAdded: false,
-                    userName: '',
-                    todos: [
-                        {
-                            id: 1,
-                            title: 'Handla',
-                            prio: 'low',
-                            prioColor: 'black'
-                        },
-                        {
-                            id: 2,
-                            title: 'Städa',
-                            prio: 'low',
-                            prioColor: 'black'
-                        },
-                        {
-                            id: 3,
-                            title: 'Diska',
-                            prio: 'low',
-                            prioColor: 'black'
-                        }
-                    ],
-                    nextTodoId: 4
-                },
-                methods: {
-                    addNewTodo: function () {
-                        this.todos.push({
-                            id: this.nextTodoId++,
-                            title: this.newTodoText,
-                            prio: this.newPrio,
-                        })
-                        this.newTodoText = '',
-                        this.newPrio = 'low'
-                    },
-                    addNewUser: function () {
-                       this.userAdded = true                       
-                    }
-                }
-            })
-        </script>
-        <script src="js/userBoX.js"></script>
-        
-    </div>
-    
-</body>
+        props: ["todos", "prio"],
+      });
+
+      new Vue({
+        el: "#todo-list-example",
+        data: {
+          newTodoText: "",
+          newPrio: "low",
+          userAdded: false,
+          userName: "",
+          todos: [
+            {
+              id: 1,
+              title: "Handla",
+              prio: "low",
+              prioColor: "black",
+            },
+            {
+              id: 2,
+              title: "Städa",
+              prio: "low",
+              prioColor: "black",
+            },
+            {
+              id: 3,
+              title: "Diska",
+              prio: "low",
+              prioColor: "black",
+            },
+          ],
+          nextTodoId: 4,
+        },
+        methods: {
+          addNewTodo: function () {
+            this.todos.push({
+              id: this.nextTodoId++,
+              title: this.newTodoText,
+              prio: this.newPrio,
+            });
+            (this.newTodoText = ""), (this.newPrio = "low");
+          },
+          addNewUser: function () {
+              if(this.userName == ''){
+                  this.userAdded = false
+              }
+              else{
+                this.userAdded = true;
+              }
+          },
+        },
+      });
+    </script>
+    <script src="js/userBoX.js"></script>
+  </body>
 </html>
